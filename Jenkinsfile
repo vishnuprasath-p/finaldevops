@@ -1,13 +1,12 @@
-pipeline {
-    agent any
-    tools{
-        maven 'maven_3_5_0'
-    }
+node {
+    stage('SCM Checkout'){
+     git 'https://github.com/vishnuprasath-p/finaldevops.git'
+   }
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Java-Techie-jt/devops-automation']]])
-                sh 'mvn clean install'
+                def mvnHome =  tool name: 'maven3', type: 'maven'
+                sh "${mvnHome}/bin/mvn clean package"                    
             }
         }
         stage('Build docker image'){
