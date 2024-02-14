@@ -1,6 +1,6 @@
 node {
     stage('SCM Checkout'){
-     git 'https://github.com/vishnuprasath-p/finaldevops'
+     git 'https://github.com/vishnuprasath-p/finaldevops.git'
    }
     stages{
         stage('Build Maven'){
